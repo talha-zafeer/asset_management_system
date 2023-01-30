@@ -6,19 +6,20 @@ import {
   MDBBtn,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { Link } from "react-router-dom";
 
 const LogIn = () => {
   return (
     <MDBContainer>
       <MDBRow className="align-items-center justify-content-center vh-100">
-        <MDBCol className="col-md-4  d-flex flex-column justify-content-center align-items-center">
+        <MDBCol className="col-lg-5  d-flex flex-column justify-content-center align-items-center">
           <img src="logo.png" alt="Not found" width={150} className="mb-5" />
           <form className="shadow-5 p-3 my-3 w-100 rounded-9">
             <div className="text-center mb-5">
-              <MDBTypography tag="h5" className="fw-bold ">
+              <MDBTypography tag="h3" className="fw-bold ">
                 Welcome Back!
               </MDBTypography>
-              <MDBTypography tag="small">
+              <MDBTypography>
                 Enter your credentials to access your account
               </MDBTypography>
             </div>
@@ -34,7 +35,8 @@ const LogIn = () => {
             </MDBBtn>
             <div className="text-center my-3">
               <MDBTypography tag="small">
-                Forgot your password ? <a href="#">Reset Password</a>
+                Forgot your password ?{" "}
+                <Link to="/reset-password">Reset Password</Link>
               </MDBTypography>
             </div>
           </form>

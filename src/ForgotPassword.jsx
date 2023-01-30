@@ -6,6 +6,7 @@ import {
   MDBBtn,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   return (
@@ -31,7 +32,8 @@ const ForgotPassword = () => {
             </MDBBtn>
             <div className="text-center my-3">
               <MDBTypography tag="small">
-                Entered wrong credentials ? Go Back to <a href="#">Login</a>
+                Entered wrong credentials ? Go Back to{" "}
+                <Link to="/login">Login</Link>
               </MDBTypography>
             </div>
           </form>

@@ -1,85 +1,111 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { MDBTabs, MDBTabsItem, MDBTabsLink } from "mdb-react-ui-kit";
 import {
   MDBContainer,
   MDBNavbar,
   MDBNavbarBrand,
-  MDBNavbarToggler,
-  MDBIcon,
   MDBNavbarNav,
-  MDBNavbarItem,
-  MDBNavbarLink,
-  MDBBtn,
   MDBDropdown,
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
-  MDBCollapse,
 } from "mdb-react-ui-kit";
-// import { MDBIcon } from "mdb-react-ui-kit";
-const NavBar = () => {
-  const [showBasic, setShowBasic] = useState(true);
+
+const NavBar = ({ to }) => {
+  const [basicActive, setBasicActive] = useState("dashboard");
+  const navigate = useNavigate();
+  const handleBasicClick = (value) => {
+    if (value === basicActive) {
+      return;
+    }
+    navigate(value);
+    setBasicActive(value);
+  };
   return (
     <>
-      <MDBNavbar sticky="top" light bgColor="light">
-        <MDBContainer fluid className="d-flex flex-row">
-          {/* <MDBNavbarBrand href="#" className="border-end ps-5 pe-3">
-            <img src="logo.png" height="50" alt="" loading="lazy" />
-          </MDBNavbarBrand> */}
-          <MDBNavbarToggler
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            onClick={() => setShowBasic(!showBasic)}
-          >
-            <MDBIcon icon="bars" fas />
-          </MDBNavbarToggler>
-
-          <MDBCollapse navbar show={showBasic}>
-            <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
-              <MDBNavbarItem>
-                <MDBNavbarLink active aria-current="page" href="#">
-                  Home
-                </MDBNavbarLink>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
-                <MDBNavbarLink href="#">Link</MDBNavbarLink>
-              </MDBNavbarItem>
-
-              <MDBNavbarItem>
-                <MDBDropdown>
-                  <MDBDropdownToggle tag="a" className="nav-link" role="button">
-                    Dropdown
-                  </MDBDropdownToggle>
-                  <MDBDropdownMenu>
-                    <MDBDropdownItem link>Action</MDBDropdownItem>
-                    <MDBDropdownItem link>Another action</MDBDropdownItem>
-                    <MDBDropdownItem link>Something else here</MDBDropdownItem>
-                  </MDBDropdownMenu>
-                </MDBDropdown>
-              </MDBNavbarItem>
-
-              <MDBNavbarItem>
-                <MDBNavbarLink
-                  disabled
-                  href="#"
-                  tabIndex={-1}
-                  aria-disabled="true"
+      <MDBNavbar expand="lg" sticky="top" light bgColor="light" className="p-0">
+        <MDBContainer
+          fluid
+          className="justify-content-start p-0 align-items-end "
+          style={{ backgroundColor: "white" }}
+        >
+          <MDBNavbarBrand className="p-2">
+            <Link to="login" className="border-end ps-5 pe-3">
+              <img src="/logo.png" height="50" alt="Giga Labs" loading="lazy" />
+            </Link>
+          </MDBNavbarBrand>
+          <MDBNavbarNav className="mr-auto">
+            <MDBTabs className="check">
+              <MDBTabsItem>
+                <MDBTabsLink
+                  onClick={() => handleBasicClick("dashboard")}
+                  active={basicActive === "dashboard"}
+                  className="fs-5 text-capitalize fw-bold p-3"
                 >
-                  Disabled
-                </MDBNavbarLink>
-              </MDBNavbarItem>
-            </MDBNavbarNav>
+                  Dashboard
+                </MDBTabsLink>
+              </MDBTabsItem>
+              <MDBTabsItem>
+                <MDBTabsLink
+                  onClick={() => handleBasicClick("organizations")}
+                  active={basicActive === "organizations"}
+                  className="fs-5 text-capitalize fw-bold p-3"
+                >
+                  Organizations
+                </MDBTabsLink>
+              </MDBTabsItem>
+              <MDBTabsItem>
+                <MDBTabsLink
+                  onClick={() => handleBasicClick("admins")}
+                  active={basicActive === "admins"}
+                  className="fs-5 text-capitalize fw-bold p-3"
+                >
+                  Admins
+                </MDBTabsLink>
+              </MDBTabsItem>
+              <MDBTabsItem>
+                <MDBTabsLink
+                  onClick={() => handleBasicClick("complaints")}
+                  active={basicActive === "complaints"}
+                  className="fs-5 text-capitalize fw-bold p-3"
+                >
+                  Complaints
+                </MDBTabsLink>
+              </MDBTabsItem>
+            </MDBTabs>
+          </MDBNavbarNav>
 
-            <form className="d-flex input-group w-auto">
-              <input
-                type="search"
-                className="form-control"
-                placeholder="Type query"
-                aria-label="Search"
+          <MDBDropdown className="my-auto me-5">
+            <MDBDropdownToggle
+              tag="a"
+              className="nav-link fs-5 text-reset fw-bold"
+              role="button"
+            >
+              <img
+                src="https://mdbootstrap.com/img/new/avatars/2.jpg"
+                alt=""
+                style={{ width: "50px", height: "50px" }}
+                className="rounded-circle mx-2"
               />
-              <MDBBtn color="primary">Search</MDBBtn>
-            </form>
-          </MDBCollapse>
+              Super Admin
+            </MDBDropdownToggle>
+            <MDBDropdownMenu>
+              <MDBDropdownItem link className="fs-5">
+                View Profile
+              </MDBDropdownItem>
+              <MDBDropdownItem link className=" fs-5">
+                Settings
+              </MDBDropdownItem>
+              <MDBDropdownItem link className="fs-5">
+                Something else here
+              </MDBDropdownItem>
+              <MDBDropdownItem link className="btn-success fs-5">
+                Sign Out
+              </MDBDropdownItem>
+            </MDBDropdownMenu>
+          </MDBDropdown>
         </MDBContainer>
       </MDBNavbar>
     </>
