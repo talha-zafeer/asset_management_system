@@ -77,7 +77,7 @@ const Dashboard = () => {
   ];
   return (
     <>
-      <MDBContainer fluid className="rounded-5 shadow-5 my-5 p-3 bg-white w-80">
+      <MDBContainer fluid className="rounded-5 shadow-5 my-5 p-3 bg-white w-90">
         <MDBTypography tag="h3" className="text-start">
           Dashboard
         </MDBTypography>
@@ -88,7 +88,7 @@ const Dashboard = () => {
         </MDBRow>
         <MDBRow className="align-items-center my-5">
           <MDBCol>
-            <MDBTypography tag="h6" className="fw-bold">
+            <MDBTypography tag="h6" className="fw-bold text-start">
               Analytics
             </MDBTypography>
           </MDBCol>
@@ -125,9 +125,9 @@ const Dashboard = () => {
             </MDBTabsPane>
           </MDBTabsContent>
         </MDBRow>
-        <MDBRow className="align-items-center">
+        <MDBRow className="align-items-center mt-5">
           <MDBCol>
-            <MDBTypography tag="h6" className="fw-bold">
+            <MDBTypography tag="h6" className="fw-bold text-start">
               Recent Complaints
             </MDBTypography>
           </MDBCol>

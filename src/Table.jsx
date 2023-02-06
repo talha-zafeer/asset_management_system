@@ -7,7 +7,14 @@ import {
 } from "mdb-react-ui-kit";
 const Table = () => {
   return (
-    <MDBTable striped borderless hover align="middle">
+    <MDBTable
+      responsive
+      striped
+      borderless
+      hover
+      align="middle"
+      className="text-start"
+    >
       <MDBTableHead className="fs-6 table-dark">
         <tr>
           <th scope="col">Name</th>

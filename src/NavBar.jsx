@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { MDBTabs, MDBTabsItem, MDBTabsLink } from "mdb-react-ui-kit";
+import {
+  MDBTabs,
+  MDBTabsItem,
+  MDBTabsLink,
+  MDBNavbarToggler,
+} from "mdb-react-ui-kit";
 import {
   MDBContainer,
   MDBNavbar,
@@ -11,10 +16,14 @@ import {
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
+  MDBIcon,
+  MDBCollapse,
 } from "mdb-react-ui-kit";
 
 const NavBar = ({ to }) => {
   const [basicActive, setBasicActive] = useState("dashboard");
+  const [showBasic, setShowBasic] = useState(false);
+
   const navigate = useNavigate();
   const handleBasicClick = (value) => {
     if (value === basicActive) {
@@ -25,62 +34,72 @@ const NavBar = ({ to }) => {
   };
   return (
     <>
-      <MDBNavbar expand="lg" sticky="top" light bgColor="light" className="p-0">
+      <MDBNavbar expand="lg" sticky="top" className="p-0">
         <MDBContainer
           fluid
-          className="justify-content-start p-0 align-items-end "
+          className=" p-0 "
           style={{ backgroundColor: "white" }}
         >
           <MDBNavbarBrand className="p-2">
-            <Link to="login" className="border-end ps-5 pe-3">
+            <a href="http://localhost:3000" className="border-end ps-5 pe-3">
               <img src="/logo.png" height="50" alt="Giga Labs" loading="lazy" />
-            </Link>
+            </a>
           </MDBNavbarBrand>
-          <MDBNavbarNav className="mr-auto">
-            <MDBTabs className="check">
-              <MDBTabsItem>
-                <MDBTabsLink
-                  onClick={() => handleBasicClick("dashboard")}
-                  active={basicActive === "dashboard"}
-                  className="fs-5 text-capitalize fw-bold p-3"
-                >
-                  Dashboard
-                </MDBTabsLink>
-              </MDBTabsItem>
-              <MDBTabsItem>
-                <MDBTabsLink
-                  onClick={() => handleBasicClick("organizations")}
-                  active={basicActive === "organizations"}
-                  className="fs-5 text-capitalize fw-bold p-3"
-                >
-                  Organizations
-                </MDBTabsLink>
-              </MDBTabsItem>
-              <MDBTabsItem>
-                <MDBTabsLink
-                  onClick={() => handleBasicClick("admins")}
-                  active={basicActive === "admins"}
-                  className="fs-5 text-capitalize fw-bold p-3"
-                >
-                  Admins
-                </MDBTabsLink>
-              </MDBTabsItem>
-              <MDBTabsItem>
-                <MDBTabsLink
-                  onClick={() => handleBasicClick("complaints")}
-                  active={basicActive === "complaints"}
-                  className="fs-5 text-capitalize fw-bold p-3"
-                >
-                  Complaints
-                </MDBTabsLink>
-              </MDBTabsItem>
-            </MDBTabs>
-          </MDBNavbarNav>
+          <MDBNavbarToggler
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            onClick={() => setShowBasic(!showBasic)}
+          >
+            <MDBIcon icon="bars" fas />
+          </MDBNavbarToggler>
+          <MDBCollapse navbar show={showBasic}>
+            <MDBNavbarNav className=" mr-auto mb-lg-0">
+              <MDBTabs>
+                <MDBTabsItem>
+                  <MDBTabsLink
+                    onClick={() => handleBasicClick("dashboard")}
+                    active={basicActive === "dashboard"}
+                    className="fs-6 text-capitalize  p-3"
+                  >
+                    Dashboard
+                  </MDBTabsLink>
+                </MDBTabsItem>
+                <MDBTabsItem>
+                  <MDBTabsLink
+                    onClick={() => handleBasicClick("organizations")}
+                    active={basicActive === "organizations"}
+                    className="fs-6 text-capitalize  p-3"
+                  >
+                    Organizations
+                  </MDBTabsLink>
+                </MDBTabsItem>
+                <MDBTabsItem>
+                  <MDBTabsLink
+                    onClick={() => handleBasicClick("admins")}
+                    active={basicActive === "admins"}
+                    className="fs-6 text-capitalize p-3"
+                  >
+                    Admins
+                  </MDBTabsLink>
+                </MDBTabsItem>
+                <MDBTabsItem>
+                  <MDBTabsLink
+                    onClick={() => handleBasicClick("complaints")}
+                    active={basicActive === "complaints"}
+                    className="fs-6 text-capitalize  p-3"
+                  >
+                    Complaints
+                  </MDBTabsLink>
+                </MDBTabsItem>
+              </MDBTabs>
+            </MDBNavbarNav>
+          </MDBCollapse>
 
           <MDBDropdown className="my-auto me-5">
             <MDBDropdownToggle
               tag="a"
-              className="nav-link fs-5 text-reset fw-bold"
+              className="nav-link fs-6 text-reset"
               role="button"
             >
               <img
