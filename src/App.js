@@ -1,20 +1,20 @@
 import "./App.css";
-import Home from "./Home";
+import Home from "./components/Home";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
-import LogIn from "./LogIn";
-import ResetPassword from "./ResetPassword";
-import ForgotPassword from "./ForgotPassword";
-import VerificationCode from "./VerificationCode";
-import Dashboard from "./Dashboard";
-import Organizations from "./Organizations";
-import Admins from "./Admins";
-import Complaints from "./Complaints";
-import SuperAdmin from "./SuperAdmin";
-import Employee from "./Employee";
-import EmployeeDashboard from "./EmployeeDashboard";
-import Requests from "./Requests";
-import AddOrganizationForm from "./AddOrganizationForm";
-import OrganizationsDetails from "./OrganizationsDetails";
+import LogIn from "./components/LogIn";
+import ResetPassword from "./components/ResetPassword";
+import ForgotPassword from "./components/ForgotPassword";
+import VerificationCode from "./components/VerificationCode";
+import Dashboard from "./components/Dashboard";
+import Organizations from "./components/Organizations";
+import Admins from "./components/Admins";
+import Complaints from "./components/Complaints";
+import SuperAdmin from "./components/SuperAdmin";
+import Employee from "./components/Employee";
+import EmployeeDashboard from "./components/EmployeeDashboard";
+import Requests from "./components/Requests";
+import AddOrganizationForm from "./components/AddOrganizationForm";
+import OrganizationsDetails from "./components/OrganizationsDetails";
 
 function App() {
   return (

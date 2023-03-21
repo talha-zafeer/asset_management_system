@@ -50,4 +50,12 @@ code {
 .w-90 {
   max-width: 90%;
 }
+.img-upload {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
 
+.btn-back:hover {
+  cursor: pointer;
+}

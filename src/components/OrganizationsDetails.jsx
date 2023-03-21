@@ -15,12 +15,26 @@ import {
 } from "mdb-react-ui-kit";
 import Table from "./Table";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const OrganizationsDetails = () => {
+  const [organizations, setOrganizations] = useState(null);
   const navigate = useNavigate();
   const handleAddOrganization = () => {
     navigate("/super-admin/organizations/add-organization");
   };
+
+  useEffect(() => {
+    const fetchOrganizations = async () => {
+      const { data: result } = await axios.get(
+        "http://localhost:8000/superAdmin/"
+      );
+      setOrganizations(result);
+    };
+
+    fetchOrganizations();
+  }, []);
   return (
     <MDBContainer className="shadow-5 rounded-5 my-5 p-3 bg-white">
       <MDBRow className="my-3 justify-content-around align-items-center">
@@ -67,7 +81,7 @@ const OrganizationsDetails = () => {
         </MDBCol>
       </MDBRow>
       <MDBRow className="my-3">
-        <Table />
+        <Table tableType="ORG" data={organizations} />
       </MDBRow>
     </MDBContainer>
   );
