@@ -5,12 +5,12 @@ const Charts = ({ data }) => {
     animation: {
       startup: true,
       easing: "bounce",
-      duration: "3000",
+      duration: "1000",
     },
   };
   return (
     <Chart
-      chartType="LineChart"
+      chartType="Bar"
       options={options}
       data={data}
       width="100%"

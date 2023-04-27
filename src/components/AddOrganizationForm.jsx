@@ -35,9 +35,9 @@ const AddOrganizationForm = () => {
   const handleZipCode = (e) => setZipCode(e.target.value);
   const handleRepName = (e) => setRepName(e.target.value);
   const handleRepContactNo = (e) => setRepContactNo(e.target.value);
-  const handleImageChange = (event) => {
-    setLogo(URL.createObjectURL(event.target.files[0]));
-    setLogoFile(event.target.files[0]);
+  const handleImageChange = (e) => {
+    setLogo(URL.createObjectURL(e.target.files[0]));
+    setLogoFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -48,11 +48,14 @@ const AddOrganizationForm = () => {
     formData.append("email", email);
     formData.append("bio", bio);
     formData.append("address", address);
-    formData.append("repName", repName);
-    formData.append("repContactNo", repContactNo);
+    formData.append("rep_name", repName);
+    formData.append("rep_contact", repContactNo);
+
+    console.log(formData);
+    console.log(logoFile, name, email, bio, address, repName, repContactNo);
 
     const result = await axios.post(
-      "http://localhost:8000/superAdmin/add-organization",
+      "http://localhost:8000/organizations/create",
       formData,
       {
         headers: {
@@ -60,6 +63,7 @@ const AddOrganizationForm = () => {
         },
       }
     );
+    console.log(result);
     navigate(-1);
   };
 
@@ -95,7 +99,7 @@ const AddOrganizationForm = () => {
         </MDBRow>
 
         <MDBRow className="align-items-center py-5 border-bottom">
-          <MDBCol sm="12" lg="2">
+          <MDBCol sm="12" lg="2" className="overflow-hidden rounded-7">
             <img src={logo} className="rounded-7 profile-img " alt="Profile" />
           </MDBCol>
           <MDBCol sm="12" lg="3" className="text-start">

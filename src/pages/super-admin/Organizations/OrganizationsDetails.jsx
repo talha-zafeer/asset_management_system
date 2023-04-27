@@ -13,24 +13,34 @@ import {
   MDBDropdownToggle,
   MDBDropdownItem,
 } from "mdb-react-ui-kit";
-import Table from "./Table";
+import Table from "../../../components/Table";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { HashLoader } from "react-spinners";
 
-const OrganizationsDetails = () => {
+const OrganizationsDetailsPage = () => {
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+  };
   const [organizations, setOrganizations] = useState(null);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [loaderColor, setLoaderColor] = useState("#14A44D");
   const handleAddOrganization = () => {
     navigate("/super-admin/organizations/add-organization");
   };
 
   useEffect(() => {
     const fetchOrganizations = async () => {
-      const { data: result } = await axios.get(
-        "http://localhost:8000/superAdmin/"
-      );
-      setOrganizations(result);
+      setLoading(true);
+      const { data } = await axios.get("http://localhost:8000/organizations/");
+      data && console.log(data);
+      console.log(data);
+      setOrganizations(data);
+      setLoading(false);
     };
 
     fetchOrganizations();
@@ -38,9 +48,9 @@ const OrganizationsDetails = () => {
   return (
     <MDBContainer className="shadow-5 rounded-5 my-5 p-3 bg-white">
       <MDBRow className="my-3 justify-content-around align-items-center">
-        <MDBCol size="9" className="px-0">
-          <MDBRow className="align-items-center justify-content-start">
-            <MDBCol size="2">
+        <MDBCol size="8" className="px-0">
+          <MDBRow className="align-items-center justify-content-between">
+            <MDBCol size="3">
               <MDBTypography tag="h4">Organizations</MDBTypography>
             </MDBCol>
             <MDBCol size="4">
@@ -52,7 +62,7 @@ const OrganizationsDetails = () => {
                 />
               </MDBInputGroup>
             </MDBCol>
-            <MDBCol>
+            <MDBCol className="text-start">
               <MDBDropdown>
                 <MDBDropdownToggle
                   className="rounded-5 border text-capitalize fs-6 px-3"
@@ -81,10 +91,27 @@ const OrganizationsDetails = () => {
         </MDBCol>
       </MDBRow>
       <MDBRow className="my-3">
-        <Table tableType="ORG" data={organizations} />
+        {!loading && organizations && (
+          <Table tableType="ORG" data={organizations} />
+        )}
+        {loading && (
+          <MDBRow
+            className="justify-content-center align-items-center"
+            style={{ minHeight: "500px" }}
+          >
+            <HashLoader
+              color={loaderColor}
+              loading={loading}
+              cssOverride={override}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </MDBRow>
+        )}
       </MDBRow>
     </MDBContainer>
   );
 };
 
-export default OrganizationsDetails;
+export default OrganizationsDetailsPage;

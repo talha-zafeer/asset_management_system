@@ -6,7 +6,7 @@ const DashboardHeaders = ({ stats }) => {
   const style = status ? "green" : "red";
   return (
     <>
-      <MDBCol className="border-end ">
+      <MDBCol>
         <MDBTypography className="" tag="h5">
           {stats.name}
         </MDBTypography>

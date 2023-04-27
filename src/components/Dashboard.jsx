@@ -81,7 +81,7 @@ const Dashboard = () => {
         <MDBTypography tag="h3" className="text-start">
           Dashboard
         </MDBTypography>
-        <MDBRow className="justify-content-around border-bottom py-5 align-items-center">
+        <MDBRow className="justify-content-around border-bottom py-5 align-items-center ">
           {headerStats.map((stats) => (
             <DashboardHeaders stats={stats} />
           ))}

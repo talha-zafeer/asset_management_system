@@ -14,11 +14,30 @@ import {
   MDBDropdownItem,
 } from "mdb-react-ui-kit";
 import Table from "./Table";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Complaints = () => {
+  const [complaints, setComplaints] = useState();
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+
+    axios
+      .get("http://localhost:8000/complaints", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setComplaints(response.data);
+      });
+  }, []);
+
   return (
     <MDBContainer className="shadow-5 rounded-5 my-5 p-3 bg-white">
-      <MDBRow className="my-3 justify-content-between align-items-center">
+      <MDBRow className="my-3 justify-content-around align-items-center">
         <MDBCol size="9" className="px-0">
           <MDBRow className="align-items-center justify-content-start">
             <MDBCol size="2">
@@ -75,7 +94,7 @@ const Complaints = () => {
         </MDBCol>
       </MDBRow>
       <MDBRow className="my-3">
-        <Table />
+        {complaints && <Table tableType="COMPLAINTS" data={complaints} />}
       </MDBRow>
     </MDBContainer>
   );

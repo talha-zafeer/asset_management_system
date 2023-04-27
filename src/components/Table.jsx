@@ -6,14 +6,20 @@ import {
   MDBTableBody,
 } from "mdb-react-ui-kit";
 import { useEffect, useState } from "react";
-import { tableHeaders, tableDataFields } from "../constants/tableHeaders";
+import { tableHeaders, tableDataFields, actionRoute } from "../constants/tableHeaders";
+import { useNavigate } from "react-router-dom";
 
 const Table = ({ tableType, data }) => {
-  const [tableData, setTableData] = useState(null);
+  const [tableData, setTableData] = useState();
+  const navigate = useNavigate();
+
+  const handleOrganization = (id) => {
+    navigate(`details/${id}`);
+  };
 
   useEffect(() => {
-    data && setTableData(data);
-  }, [data]);
+    setTableData(data);
+  }, []);
 
   return (
     <MDBTable
@@ -36,14 +42,14 @@ const Table = ({ tableType, data }) => {
         {tableData &&
           tableData.map((data, idx) => (
             <tr>
-              <td>{idx}</td>
+              <td>{idx + 1}</td>
               {tableType &&
                 tableDataFields[tableType].map((value) =>
-                  value == "logo" ? (
+                  value === "logo" ? (
                     <td>
                       <div className="d-flex align-items-center">
                         <img
-                          src={data[value]}
+                          src={`data:image/jpeg;base64,${data.logo}`}
                           alt={data.name}
                           style={{ width: "45px", height: "45px" }}
                           className="rounded-5"
@@ -55,29 +61,15 @@ const Table = ({ tableType, data }) => {
                   )
                 )}
               <td>
-                <MDBBtn color="link" rounded size="sm">
+                <MDBBtn
+                  color="link"
+                  rounded
+                  size="sm"
+                  onClick={() => handleOrganization(data.id)}
+                >
                   View
                 </MDBBtn>
               </td>
-              {/* <td>{idx}</td>
-              <td>
-                <div className="d-flex align-items-center">
-                  <img
-                    src={data.logo}
-                    alt={data.name}
-                    style={{ width: "45px", height: "45px" }}
-                    className="rounded-5"
-                  />
-                </div>
-              </td>
-              <td>{data.name}</td>
-              <td>{data.address}</td>
-              <td>{data.repContactNo}</td>
-              <td>
-                <MDBBtn color="link" rounded size="sm">
-                  View
-                </MDBBtn>
-              </td> */}
             </tr>
           ))}
       </MDBTableBody>
