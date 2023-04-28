@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   MDBTabs,
   MDBTabsItem,
@@ -16,25 +15,30 @@ import {
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
+  MDBNavbarItem,
+  MDBNavbarLink,
   MDBIcon,
   MDBCollapse,
 } from "mdb-react-ui-kit";
+import { navBar } from "../constants/nav-links";
 
-const NavBar = ({ to }) => {
-  const [basicActive, setBasicActive] = useState("dashboard");
-  const [showBasic, setShowBasic] = useState(false);
+const NavBar = ({ navType }) => {
+  // const [basicActive, setBasicActive] = useState("dashboard");
+  // const [showBasic, setShowBasic] = useState(false);
 
-  const navigate = useNavigate();
-  const handleBasicClick = (value) => {
-    if (value === basicActive) {
-      return;
-    }
-    navigate(value);
-    setBasicActive(value);
-  };
+  // const navigate = useNavigate();
+  // const handleBasicClick = (value) => {
+  //   if (value === basicActive) {
+  //     return;
+  //   }
+  //   navigate(value);
+  //   setBasicActive(value);
+  // };
+  const [showNav, setShowNav] = useState(false);
+
   return (
     <>
-      <MDBNavbar expand="lg" sticky="top" className="p-0">
+      {/* <MDBNavbar expand="lg" sticky="top" className="p-0">
         <MDBContainer
           fluid
           className=" p-0 "
@@ -96,6 +100,64 @@ const NavBar = ({ to }) => {
             </MDBNavbarNav>
           </MDBCollapse>
 
+          <MDBDropdown className="my-auto me-5">
+            <MDBDropdownToggle
+              tag="a"
+              className="nav-link fs-6 text-reset"
+              role="button"
+            >
+              <img
+                src="https://mdbootstrap.com/img/new/avatars/2.jpg"
+                alt=""
+                style={{ width: "50px", height: "50px" }}
+                className="rounded-circle mx-2"
+              />
+              Super Admin
+            </MDBDropdownToggle>
+            <MDBDropdownMenu>
+              <MDBDropdownItem link className="fs-5">
+                View Profile
+              </MDBDropdownItem>
+              <MDBDropdownItem link className=" fs-5">
+                Settings
+              </MDBDropdownItem>
+              <MDBDropdownItem link className="fs-5">
+                Something else here
+              </MDBDropdownItem>
+              <MDBDropdownItem link className="btn-success fs-5">
+                Sign Out
+              </MDBDropdownItem>
+            </MDBDropdownMenu>
+          </MDBDropdown>
+        </MDBContainer>
+      </MDBNavbar> */}
+      <MDBNavbar expand="lg" light bgColor="light">
+        <MDBContainer fluid>
+          <MDBNavbarBrand className="p-2">
+            <a href="http://localhost:3000" className="border-end ps-5 pe-3">
+              <img src="/logo.png" height="50" alt="Giga Labs" loading="lazy" />
+            </a>
+          </MDBNavbarBrand>
+          <MDBNavbarToggler
+            type="button"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            onClick={() => setShowNav(!showNav)}
+          >
+            <MDBIcon icon="bars" fas />
+          </MDBNavbarToggler>
+          <MDBCollapse navbar show={showNav}>
+            <MDBNavbarNav>
+              {navType &&
+                navBar[navType].map((navItem) => (
+                  <MDBNavbarItem>
+                    <Link to={navItem.toLowerCase()}>
+                      <MDBNavbarLink>{navItem}</MDBNavbarLink>
+                    </Link>
+                  </MDBNavbarItem>
+                ))}
+            </MDBNavbarNav>
+          </MDBCollapse>
           <MDBDropdown className="my-auto me-5">
             <MDBDropdownToggle
               tag="a"

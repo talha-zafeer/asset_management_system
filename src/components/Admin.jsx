@@ -2,14 +2,14 @@ import NavBar from "./NavBar";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 
-const Employee = () => {
+const Admin = () => {
   return (
     <>
-      <NavBar navType="EMPLOYEE" />
+      <NavBar navType="ADMIN" />
       <Outlet />
       <Footer />
     </>
   );
 };
 
-export default Employee;
+export default Admin;

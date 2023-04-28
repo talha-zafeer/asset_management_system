@@ -12,10 +12,20 @@ import Complaints from "./components/Complaints";
 import SuperAdmin from "./components/SuperAdmin";
 import Employee from "./components/Employee";
 import EmployeeDashboard from "./components/EmployeeDashboard";
-import Requests from "./components/Requests";
+import Requests from "./pages/employee/Requests/Requests";
 import AddOrganizationForm from "./components/AddOrganizationForm";
 import OrganizationsDetailsPage from "./pages/super-admin/Organizations/OrganizationsDetails";
 import ViewOrganization from "./pages/super-admin/Organizations/ViewOrganizaion";
+import Admin from "./components/Admin";
+import AdminDashboard from "./pages/admin/dashboard/AdminDashboard";
+import Vendors from "./pages/admin/Vendors/Vendors";
+import Inventory from "./pages/admin/inventory/Inventory";
+import Categories from "./pages/admin/Categories/Categories";
+import Employees from "./pages/admin/Employees/Employees";
+import AddInventory from "./pages/admin/inventory/AddInventory";
+import InventoryDetailsPage from "./pages/admin/inventory/InventoryDetailsPage";
+import EmployeeDetails from "./pages/admin/Employees/EmployeeDetails";
+import AddEmployee from "./pages/admin/Employees/AddEmployee";
 
 function App() {
   return (
@@ -40,6 +50,19 @@ function App() {
             </Route>
             <Route path="admins" element={<Admins />} />
             <Route path="complaints" element={<Complaints />} />
+          </Route>
+          <Route path="admin" element={<Admin />}>
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="inventory" element={<Inventory />}>
+              <Route path="" element={<InventoryDetailsPage />}></Route>
+              <Route path="add-inventory" element={<AddInventory />}></Route>
+            </Route>
+            <Route path="categories" element={<Categories />} />
+            <Route path="vendors" element={<Vendors />}></Route>
+            <Route path="employees" element={<Employees />}>
+              <Route path="" element={<EmployeeDetails />}></Route>
+              <Route path="add-employee" element={<AddEmployee />}></Route>
+            </Route>
           </Route>
           <Route path="employee" element={<Employee />}>
             <Route path="dashboard" element={<EmployeeDashboard />} />

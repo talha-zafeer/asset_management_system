@@ -6,10 +6,10 @@ import {
   MDBTypography,
   MDBContainer,
 } from "mdb-react-ui-kit";
-import Table from "./Table";
+import Table from "../../../components/Table";
 const Requests = () => {
   return (
-    <MDBContainer fluid className="rounded-6 shadow-5 my-5 p-3 bg-white w-80">
+    <MDBContainer className="rounded-6 shadow-5 my-5 p-3 bg-white">
       <MDBRow className="mb-4">
         <MDBCol className="text-start">
           <MDBTypography tag="h4">Requests</MDBTypography>
@@ -22,7 +22,7 @@ const Requests = () => {
         </MDBCol>
       </MDBRow>
       <MDBRow>
-        <Table />
+        <Table tableType="REQUESTS" />
       </MDBRow>
     </MDBContainer>
   );

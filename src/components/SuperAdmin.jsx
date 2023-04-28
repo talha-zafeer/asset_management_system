@@ -6,7 +6,7 @@ import { MDBContainer } from "mdb-react-ui-kit";
 const SuperAdmin = () => {
   return (
     <>
-      <NavBar />
+      <NavBar navType="SUPER_ADMIN" />
       <Outlet />
       <Footer />
     </>

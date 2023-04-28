@@ -4,13 +4,14 @@ import Table from "./Table";
 
 const EmployeeDashboard = () => {
   return (
-    <MDBContainer fluid className="rounded-5 shadow-5 my-5 p-3 bg-white w-80">
+    <MDBContainer className="rounded-5 shadow-5 my-5 p-3 bg-white">
       <MDBRow>
         <EmployeeProfile />
       </MDBRow>
       <MDBRow>
-        <Table />
+        <Table tableType="RECENT_REQUESTS" />
       </MDBRow>
+      <MDBRow>{/* <Table tableType="RECENT_COMPLAINTS" /> */}</MDBRow>
     </MDBContainer>
   );
 };

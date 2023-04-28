@@ -20,10 +20,10 @@ const EmployeeProfile = () => {
           </MDBBtn>
         </MDBCol>
       </MDBRow>
-      <MDBRow className="mb-4 align-items-center justify-content-between">
+      <MDBRow className="mb-4 align-items-center justify-content-between ">
         <MDBCol md="12" lg="auto" className=" mb-4 ">
-          <div className="img-fluid rounded-7 profile-img-container">
-            <img src="/profile.jpeg" className=" profile-img" alt="Profile" />
+          <div className="employee-img rounded-7">
+            <img src="/profile.jpeg" alt="Profile" className="rounded-7" />
           </div>
         </MDBCol>
         <MDBCol md="6" sm="12" lg="auto" className="text-start">
@@ -46,17 +46,17 @@ const EmployeeProfile = () => {
             <MDBTypography tag="h6">Development</MDBTypography>
           </MDBRow>
         </MDBCol>
-        <MDBCol md="6" sm="12" lg="auto" className="text-start">
+        <MDBCol md="6" sm="12" lg="2" className="text-start">
           <MDBRow className="mb-4">
             <MDBTypography tag="small">Contact Number</MDBTypography>
             <MDBTypography tag="h6">+92 336 248 6167</MDBTypography>
           </MDBRow>
           <MDBRow>
             <MDBTypography tag="small">Education</MDBTypography>
-            <MDBTypography tag="h6">BS - Software Engineering</MDBTypography>
+            <MDBTypography tag="h6">BS - Software </MDBTypography>
           </MDBRow>
         </MDBCol>
-        <MDBCol md="6" sm="12" lg="auto" className="text-start">
+        <MDBCol md="6" sm="12" lg="2" className="text-start">
           <MDBRow className="mb-4">
             <MDBTypography tag="small">Company Experience</MDBTypography>
             <MDBTypography tag="h6">3 Months</MDBTypography>
